@@ -1,0 +1,7 @@
+DialogID,DialogText,ChoiceList,NextDialogID
+D001,Ad astra abyssosque! Welcome to the Adventurers' Guild.,Who Are You?;Claim Reward,D002;D005
+D002,"I am Katheryne, the receptionist here at the Adventurers' Guild.",,D003
+D003,It's my job to assign quests to Mondstadt's adventurers and provide intelligence support.,,D004
+D004,The Adventurers' Guild is open for business all year round.,,
+D005,Thank you for completing today's commissions.,,D006
+D006,Here is your reward.,,
