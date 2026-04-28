@@ -11,6 +11,7 @@ public class DialogCSVController : MonoBehaviour
 
     public void LoadDialogData()
     {
+        //Split csv dialog, per row
         string[] dialogLines = dialogCSV.text.Split("\n");
 
         //Debug.Log(dialogLines[1]);
@@ -18,9 +19,9 @@ public class DialogCSVController : MonoBehaviour
         for(int i = 1; i < dialogLines.Length; i++) //Hindari Header
         {
             string line = dialogLines[i].Trim();
-            //Debug.Log(line); //Hasil: D001,"""Ad astra abyssosque! Welcome to the Adventurers' Guild.""","""Who Are You?"";""Claim Reward""",D002;D005
+            Debug.Log(line); //Hasil: D001,Ad astra abyssosque! Welcome to the Adventurers' Guild.,Who Are You?;Claim Reward,D002;D005
 
-            //Dibagi dulu, Parsing
+            //String panjang line dibagi menjadi 4 bagian dialogData, lakukan parsing
             string[] dialogParts = ParseDialogData(line);
 
             DialogData dialogData = new DialogData();
@@ -42,17 +43,17 @@ public class DialogCSVController : MonoBehaviour
                 dialogData.nextDialogID = dialogParts[3].Split(';');
             }
 
-
-
             dialogDict[dialogData.dialogID] = dialogData; //Masukin ke Dict
         }
     }
 
+    //Untuk fetch dialog data via key id dict
     public DialogData GetDialogData(string id)
     {
-        return dialogDict.ContainsKey(id) ? dialogDict[id] : null; //Kalo g ada balikin null
+        return dialogDict.ContainsKey(id) ? dialogDict[id] : null; //Kalo g ada, balikin null
     }
 
+    //Memisahkan 
     private string[] ParseDialogData(string line)
     {
         List<string> result = new List<string>();

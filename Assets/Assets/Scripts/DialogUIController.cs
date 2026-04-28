@@ -13,12 +13,12 @@ public class DialogUIController : MonoBehaviour
 
     public event Action<string> onChoiceClicked;
 
-    public void ShowText(string text)
+    public void ShowText(string text) //Ubah text dialog
     {
         dialogText.text = text;
     }
 
-    public void ShowChoice(DialogData dialogData)
+    public void ShowChoice(DialogData dialogData) //Tunjukin choice
     {
         ClearChoice();
         choiceCanvas.SetActive(true);
@@ -29,13 +29,13 @@ public class DialogUIController : MonoBehaviour
         {
             int index = i;
 
-            GameObject dialogButton = Instantiate(choiceButtonPrefab, choiceHolder);
-            dialogButton.GetComponentInChildren<TextMeshProUGUI>().text = dialogChoices[i];
+            GameObject dialogButton = Instantiate(choiceButtonPrefab, choiceHolder); //Instantiate button baru
+            dialogButton.GetComponentInChildren<TextMeshProUGUI>().text = dialogChoices[i]; //Ubah text choice button sesuai dialog data
 
             //Set Event
             dialogButton.GetComponent<Button>().onClick.AddListener(() =>
             {
-                onChoiceClicked(dialogData.nextDialogID[index]);
+                onChoiceClicked(dialogData.nextDialogID[index]); //Set event
             });
         }
     }

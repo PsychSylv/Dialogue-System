@@ -23,7 +23,7 @@ public class DialogManager : MonoBehaviour
 
         gameState = GameState.None;
 
-        dialogCSVController.LoadDialogData();
+        dialogCSVController.LoadDialogData(); //Load data dialog ke dalam dict
 
         //Lgsg Load Dialog Pertama!
         dialogUIController.gameObject.SetActive(true);
@@ -41,14 +41,14 @@ public class DialogManager : MonoBehaviour
 
         //Debug.Log(currentDialogData.dialogText);
 
-        if(!currentDialogData.hasChoice)
+        if(!currentDialogData.hasChoice) //Kalau g ada choice, disable choice menu, show text saja
         {
             gameState = GameState.Dialog;
 
             dialogUIController.DisableChoice();
             dialogUIController.ShowText(currentDialogData.dialogText);
         }
-        else
+        else //Kalau ada choice, show text, nyalakan choice menu
         {
             gameState = GameState.Choice;
 
@@ -56,7 +56,7 @@ public class DialogManager : MonoBehaviour
             dialogUIController.ShowChoice(currentDialogData);
         }
 
-        if(currentDialogData.nextDialogID == null)
+        if(currentDialogData.nextDialogID == null) //Cek kalo sudah di dialog terakhir
         {
             endOfDialog = true;
         }
@@ -71,6 +71,7 @@ public class DialogManager : MonoBehaviour
         //Lanjutin Dialog = tinggal click
         if(Input.GetKeyDown(KeyCode.Mouse0) && gameState == GameState.Dialog)
         {
+            //Matikan dialog kalau sudah akhir
             if (endOfDialog) dialogUIController.gameObject.SetActive(false);
             else
             {
